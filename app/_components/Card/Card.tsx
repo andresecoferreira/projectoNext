@@ -1,13 +1,20 @@
 import React from "react";
 import styles from "./Card.module.css";
 
-const Card = ({ title, image, description, rating }) => {
+interface CardProps{
+  title : string,
+  image: string,
+  description: string,
+  
+}
+
+const Card = ({ title, image, description}:CardProps) => {
   return (
     <div className={styles.card}>
       <img src={image} alt={title} className={styles.image} />
       <h2 className={styles.title}>{title}</h2>
       <p className={styles.description}>{description}</p>
-      <p className={styles.rating}>⭐ {rating}/5</p>
+      
     </div>
   );
 };
