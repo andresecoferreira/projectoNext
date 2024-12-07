@@ -16,7 +16,7 @@ export default function ProductsPage () {
   
   return ( <div>      
    {data.map((produto) => {
-    return <Card title={produto.title} image={produto.image} description={produto.description}></Card>
+    return <Card title={produto.title} image={produto.image} description={produto.description} price={produto.price}></Card>
    }) }
   </div>
     
