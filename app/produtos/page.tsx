@@ -14,7 +14,13 @@ export default function ProductsPage () {
   if (!data) return <div>No data available</div>;
 
   
-  return ( <div>      
+
+  return ( <div className="mb-200">  
+   <input 
+      type="text" 
+      placeholder="Pesquise um produto..."
+      className="w-full mb-20">
+    </input>    
    {data.map((produto) => {
     return <Card title={produto.title} image={produto.image} description={produto.description} price={produto.price}></Card>
    }) }
