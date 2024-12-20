@@ -3,11 +3,11 @@ import styles from "./Card.module.css";
 import { Produto } from "@/app/models/interfaces";
 
 interface CardProps{
-  produto: Produto  
-  
+  produto: Produto, 
+  removeFromCart: (produtoId: string) => void
 }
 
-const Card = ({ produto}:CardProps) => {
+const Card = ({ produto,removeFromCart}:CardProps) => {
   return (
 
     <div className={styles.card}>
@@ -15,6 +15,9 @@ const Card = ({ produto}:CardProps) => {
       <img src={produto.image} alt={produto.title} className={styles.image} />      
       <p className={styles.price}>{produto.price}€</p>          
       <p className={styles.description}>{produto.description}</p>    
+      <button onClick={() => {
+        removeFromCart(produto.id);
+      }} className={styles.button}>- Remover</button> 
 
     </div>
   );

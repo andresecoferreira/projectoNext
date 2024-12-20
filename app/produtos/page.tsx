@@ -14,6 +14,34 @@ export default function ProductsPage () {
   const [filteredData, setFilteredData] = useState<Produto[]>([])
   const [cart,setCart] = useState<Produto[]>([])
 
+  const buy = () => {
+    fetch("/api/deisishop/buy", {
+      method: "POST",
+      body: JSON.stringify({
+        products: cart.map(product => product.id),
+        name: "",
+        student: false,
+        coupon: ""
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then((response) => {
+      setCart([]);
+    })
+    .catch(() => {
+      console.log("error ao comprar");
+    });
+  }
+  
+
   useEffect(() => {
     if(data){
       const newFilteredData = data.filter((produto) => {
@@ -40,6 +68,21 @@ export default function ProductsPage () {
   
       setCart((prevCart) => [...prevCart,produto]);
   }
+
+  function removeFromCart(produtoId: string) {
+    setCart((prevCart) => {
+      const index = prevCart.findIndex((item) => item.id === produtoId);
+      if (index !== -1) {
+        const updatedCart = [...prevCart];
+        updatedCart.splice(index, 1); // Remove uma instância do produto
+        return updatedCart;
+      }
+      return prevCart; // Retorna o carrinho inalterado se o produto não existir
+    });
+  }
+  
+  
+
   if (error) return <div>Failed to load</div>; 
   if (!data) return <div>No data available</div>;
 
@@ -54,8 +97,11 @@ export default function ProductsPage () {
    }) }
     <h1>Cesto de compras</h1>
     {cart.map((produto) => {
-    return <CardCart produto={produto}></CardCart>
+    return <CardCart produto={produto} removeFromCart={removeFromCart}></CardCart>
    }) }
+    <button onClick={() => {
+        buy();
+      }} >Comprar</button>  
 
   </div>
     
