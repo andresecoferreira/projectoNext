@@ -10,7 +10,7 @@ interface CardProps{
 const Card = ({ produto,addToCart}:CardProps) => {
   return (
 
-    <div className={styles.card}>
+    <div className={styles.card} >
       <h2 className={styles.title}>{produto.title}</h2>
       <img src={produto.image} alt={produto.title} className={styles.image} />      
       <p className={styles.price}>{produto.price}€</p>
