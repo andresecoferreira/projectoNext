@@ -17,7 +17,7 @@ const Card = ({ produto,addToCart}:CardProps) => {
       <button onClick={() => {
         addToCart(produto);
       }} className={styles.button}>+ Adicionar</button>      
-      <p className={styles.description}>{produto.description}</p>    
+      <p className={styles.description}>{produto.description} </p>     
 
     </div>
   );
