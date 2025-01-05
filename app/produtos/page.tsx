@@ -93,11 +93,15 @@ export default function ProductsPage () {
       onChange = {(e) => setSearch(e.target.value)}/>
       
    { filteredData.map((produto) => {
-    return <Card produto={produto} addToCart={addToCart}></Card>
+    return <div key={produto.id}>
+      <Card key={produto.id} produto={produto} addToCart={addToCart}></Card>
+    </div>
    }) }
     <h1>Cesto de compras</h1>
     {cart.map((produto) => {
-    return <CardCart produto={produto} removeFromCart={removeFromCart}></CardCart>
+    return <div key={produto.id}>
+        <CardCart produto={produto} removeFromCart={removeFromCart}></CardCart>
+      </div>
    }) }
     <button onClick={() => {
         buy();
