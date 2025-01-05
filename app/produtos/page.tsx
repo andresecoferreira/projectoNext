@@ -33,7 +33,7 @@ export default function ProductsPage () {
       }
       return response.json();
     })
-    .then((response) => {
+    .then(() => {
       setCart([]);
     })
     .catch(() => {
